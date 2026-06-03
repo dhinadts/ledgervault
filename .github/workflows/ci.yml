@@ -29,10 +29,14 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
+          channel: stable
+          cache: true
       - name: Install frontend dependencies
         working-directory: frontend
         run: flutter pub get
       - name: Run Flutter analyze
         working-directory: frontend
         run: flutter analyze
+      - name: Build Flutter web
+        working-directory: frontend
+        run: flutter build web --release --base-href /ledgervault/ --dart-define=API_BASE_URL=https://ledgervault-z5zo.onrender.com
