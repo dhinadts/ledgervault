@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Dhinakaran Kalaimani - Reports &amp; Analytics</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#bdc2ff",
+            "tertiary-fixed": "#ffdad6",
+            "primary-fixed": "#e0e0ff",
+            "on-background": "#1b1b21",
+            "outline": "#767683",
+            "inverse-on-surface": "#f2eff8",
+            "secondary-fixed-dim": "#88d982",
+            "secondary-fixed": "#a3f69c",
+            "tertiary-container": "#670007",
+            "background": "#fbf8ff",
+            "on-tertiary-container": "#ff635a",
+            "surface-variant": "#e4e1ea",
+            "on-tertiary": "#ffffff",
+            "on-primary-container": "#8690ee",
+            "tertiary": "#400003",
+            "surface-tint": "#4c56af",
+            "on-tertiary-fixed": "#410003",
+            "error": "#ba1a1a",
+            "on-primary": "#ffffff",
+            "inverse-primary": "#bdc2ff",
+            "tertiary-fixed-dim": "#ffb4ac",
+            "surface-container-highest": "#e4e1ea",
+            "error-container": "#ffdad6",
+            "primary": "#000666",
+            "on-secondary": "#ffffff",
+            "primary-container": "#1a237e",
+            "on-secondary-container": "#217128",
+            "outline-variant": "#c6c5d4",
+            "surface": "#fbf8ff",
+            "surface-container-low": "#f5f2fb",
+            "on-tertiary-fixed-variant": "#93000e",
+            "secondary-container": "#a0f399",
+            "on-secondary-fixed": "#002204",
+            "on-surface": "#1b1b21",
+            "inverse-surface": "#303036",
+            "surface-container": "#efecf5",
+            "on-surface-variant": "#454652",
+            "on-secondary-fixed-variant": "#005312",
+            "surface-dim": "#dbd9e1",
+            "secondary": "#1b6d24",
+            "surface-container-high": "#eae7ef",
+            "on-error": "#ffffff",
+            "surface-bright": "#fbf8ff",
+            "surface-container-lowest": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#000767",
+            "on-primary-fixed-variant": "#343d96"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "stack-md": "16px",
+            "stack-lg": "32px",
+            "stack-sm": "8px",
+            "table-cell-padding": "12px 16px",
+            "unit": "4px",
+            "gutter": "16px",
+            "container-padding": "24px"
+          },
+          "fontFamily": {
+            "display-lg": ["IBM Plex Sans"],
+            "data-tabular": ["Inter"],
+            "body-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "title-sm": ["Inter"],
+            "headline-md": ["IBM Plex Sans"],
+            "label-caps": ["Inter"]
+          },
+          "fontSize": {
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "data-tabular": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+
+    .chart-bar-income {
+      height: 75%;
+    }
+
+    .chart-bar-expense {
+      height: 60%;
+    }
+
+    .chart-grid-line {
+      border-bottom: 1px dashed #e4e1ea;
+    }
+  </style>
+</head>
+
+<body class="bg-surface text-on-surface font-body-md">
+  <!-- SideNavBar -->
+  <aside
+    class="h-screen w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant flex flex-col py-stack-lg z-50">
+    <div class="px-6 mb-8">
+      <h1 class="font-headline-md text-headline-md font-bold text-primary">Dhinakaran Kalaimani</h1>
+      <p class="font-label-caps text-label-caps text-on-surface-variant">SSI Edition</p>
+    </div>
+    <nav class="flex-grow">
+      <ul class="space-y-1">
+        <li>
+          <a class="flex items-center px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="#">
+            <span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+            <span class="font-body-md text-body-md">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="#">
+            <span class="material-symbols-outlined mr-3" data-icon="menu_book">menu_book</span>
+            <span class="font-body-md text-body-md">Ledger</span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="#">
+            <span class="material-symbols-outlined mr-3" data-icon="account_balance">account_balance</span>
+            <span class="font-body-md text-body-md">Balance Sheet</span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center px-6 py-3 text-primary font-bold border-r-4 border-primary bg-primary-container/10 transition-colors duration-200"
+            href="#">
+            <span class="material-symbols-outlined mr-3" data-icon="assessment">assessment</span>
+            <span class="font-body-md text-body-md">Reports</span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200"
+            href="#">
+            <span class="material-symbols-outlined mr-3" data-icon="settings">settings</span>
+            <span class="font-body-md text-body-md">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="px-6 mt-auto">
+      <button
+        class="w-full bg-primary-container text-white py-3 px-4 rounded-lg flex items-center justify-center font-bold hover:opacity-90 transition-all">
+        <span class="material-symbols-outlined mr-2" data-icon="add">add</span>
+        Add Entry
+      </button>
+    </div>
+  </aside>
+  <!-- TopNavBar -->
+  <header
+    class="flex justify-between items-center h-16 px-container-padding ml-64 sticky top-0 bg-surface border-b border-outline-variant z-40">
+    <div class="flex items-center">
+      <h2 class="font-headline-md text-headline-md font-bold text-primary">DHINADTS IT Solutions and Support OPC PVT
+        Ltd.</h2>
+    </div>
+    <div class="flex items-center space-x-6">
+      <div class="relative">
+        <input
+          class="bg-surface-container-low border border-outline-variant rounded-full px-4 py-1.5 text-body-sm focus:border-primary focus:ring-0 w-64 transition-all"
+          placeholder="Search records..." type="text" />
+        <span class="material-symbols-outlined absolute right-3 top-2 text-on-surface-variant"
+          data-icon="search">search</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button class="text-on-surface-variant hover:text-primary transition-all">
+          <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+        </button>
+        <button class="text-on-surface-variant hover:text-primary transition-all">
+          <span class="material-symbols-outlined" data-icon="help">help</span>
+        </button>
+        <div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+          <img alt="Account Owner"
+            data-alt="A professional headshot of a middle-aged corporate executive in a crisp white shirt, photographed against a soft-focus office background. The lighting is bright and even, reflecting a professional light-mode aesthetic. The composition is clean and modern, following the corporate reliability theme of the Dhinakaran Kalaimani financial dashboard."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1qf9IlhfwPTbEZIYJtDrFYCX830FtR1XkXNdLcWRZdNJDh53DetUJP2Yhyn-bl6f0843hBFNgGBXCzA8YVgjgMaqROYDXwR0B2Ro7ZuCx3yVsotEPF5paHYyuEDx5YJg-Nn5A1rN3gamkmKfo0VjPLyMaghoLn4u5grDkmmyMYRZuIfOGAtakaYujpZeJvlKyxWp5Z4sNLbul8wetO_NhFQqwcAtAb9PT-qP-JtwyZS4MqPpmpKnAQ-1joa28uEiwBpuGgJ08-t7j" />
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Main Content Canvas -->
+  <main class="ml-64 p-container-padding bg-background min-h-[calc(100vh-64px)]">
+    <!-- Header Actions -->
+    <div class="flex justify-between items-end mb-8">
+      <div>
+        <h3 class="font-display-lg text-display-lg text-on-background">Reports &amp; Analytics</h3>
+        <p class="text-on-surface-variant mt-1">Financial performance for Fiscal Year 2023-24</p>
+      </div>
+      <div class="flex space-x-3">
+        <button
+          class="flex items-center px-4 py-2 border border-primary text-primary font-semibold rounded-lg hover:bg-surface-container-low transition-all">
+          <span class="material-symbols-outlined mr-2" data-icon="picture_as_pdf">picture_as_pdf</span>
+          Export PDF
+        </button>
+        <button
+          class="flex items-center px-4 py-2 border border-primary text-primary font-semibold rounded-lg hover:bg-surface-container-low transition-all">
+          <span class="material-symbols-outlined mr-2" data-icon="table_chart">table_chart</span>
+          Export Excel
+        </button>
+      </div>
+    </div>
+    <!-- Analytics Grid -->
+    <div class="grid grid-cols-12 gap-gutter">
+      <!-- Monthly Income vs Expenditure Chart -->
+      <div class="col-span-12 lg:col-span-8 bg-surface border border-outline-variant p-6 rounded-lg">
+        <div class="flex justify-between items-center mb-6">
+          <h4 class="font-title-sm text-title-sm text-on-surface">Income vs Expenditure</h4>
+          <div class="flex items-center space-x-4 text-body-sm">
+            <div class="flex items-center">
+              <span class="w-3 h-3 bg-secondary rounded-full mr-2"></span>
+              <span>Income</span>
+            </div>
+            <div class="flex items-center">
+              <span class="w-3 h-3 bg-error rounded-full mr-2"></span>
+              <span>Expenditure</span>
+            </div>
+          </div>
+        </div>
+        <div class="h-64 flex items-end justify-between relative border-l border-b border-outline-variant pt-4">
+          <!-- Fake Chart Bars -->
+          <div class="flex-1 flex justify-around items-end px-2 space-x-2">
+            <div class="w-full flex flex-col items-center group">
+              <div class="flex items-end space-x-1 h-48 w-full justify-center">
+                <div class="bg-secondary opacity-80 w-4 h-3/4 rounded-t-sm hover:opacity-100 transition-all"></div>
+                <div class="bg-error opacity-80 w-4 h-2/4 rounded-t-sm hover:opacity-100 transition-all"></div>
+              </div>
+              <span class="text-label-caps text-label-caps mt-2">APR</span>
+            </div>
+            <div class="w-full flex flex-col items-center">
+              <div class="flex items-end space-x-1 h-48 w-full justify-center">
+                <div class="bg-secondary opacity-80 w-4 h-4/5 rounded-t-sm"></div>
+                <div class="bg-error opacity-80 w-4 h-2/5 rounded-t-sm"></div>
+              </div>
+              <span class="text-label-caps text-label-caps mt-2">MAY</span>
+            </div>
+            <div class="w-full flex flex-col items-center">
+              <div class="flex items-end space-x-1 h-48 w-full justify-center">
+                <div class="bg-secondary opacity-80 w-4 h-[90%] rounded-t-sm"></div>
+                <div class="bg-error opacity-80 w-4 h-3/5 rounded-t-sm"></div>
+              </div>
+              <span class="text-label-caps text-label-caps mt-2">JUN</span>
+            </div>
+            <div class="w-full flex flex-col items-center">
+              <div class="flex items-end space-x-1 h-48 w-full justify-center">
+                <div class="bg-secondary opacity-80 w-4 h-[70%] rounded-t-sm"></div>
+                <div class="bg-error opacity-80 w-4 h-4/5 rounded-t-sm"></div>
+              </div>
+              <span class="text-label-caps text-label-caps mt-2">JUL</span>
+            </div>
+            <div class="w-full flex flex-col items-center">
+              <div class="flex items-end space-x-1 h-48 w-full justify-center">
+                <div class="bg-secondary opacity-80 w-4 h-[85%] rounded-t-sm"></div>
+                <div class="bg-error opacity-80 w-4 h-2/5 rounded-t-sm"></div>
+              </div>
+              <span class="text-label-caps text-label-caps mt-2">AUG</span>
+            </div>
+            <div class="w-full flex flex-col items-center">
+              <div class="flex items-end space-x-1 h-48 w-full justify-center">
+                <div class="bg-secondary opacity-80 w-4 h-[95%] rounded-t-sm"></div>
+                <div class="bg-error opacity-80 w-4 h-[55%] rounded-t-sm"></div>
+              </div>
+              <span class="text-label-caps text-label-caps mt-2">SEP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- GST Compliance Checklist -->
+      <div class="col-span-12 lg:col-span-4 bg-surface border border-outline-variant p-6 rounded-lg">
+        <h4 class="font-title-sm text-title-sm text-on-surface mb-6">GST Compliance</h4>
+        <div class="space-y-4">
+          <div class="flex items-start p-3 bg-secondary/5 rounded-lg border border-secondary/20">
+            <span class="material-symbols-outlined text-secondary mr-3" data-icon="check_circle"
+              style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            <div>
+              <p class="font-data-tabular text-data-tabular text-on-surface">GSTR-1 Filed</p>
+              <p class="text-body-sm text-on-surface-variant">Period: August 2023</p>
+            </div>
+          </div>
+          <div class="flex items-start p-3 bg-secondary/5 rounded-lg border border-secondary/20">
+            <span class="material-symbols-outlined text-secondary mr-3" data-icon="check_circle"
+              style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            <div>
+              <p class="font-data-tabular text-data-tabular text-on-surface">GSTR-3B Filed</p>
+              <p class="text-body-sm text-on-surface-variant">Period: August 2023</p>
+            </div>
+          </div>
+          <div class="flex items-start p-3 bg-tertiary-container/10 rounded-lg border border-error/20">
+            <span class="material-symbols-outlined text-error mr-3" data-icon="pending">pending</span>
+            <div>
+              <p class="font-data-tabular text-data-tabular text-on-surface">GST Reconciliation</p>
+              <p class="text-body-sm text-error">24 Entries Mismatched</p>
+            </div>
+          </div>
+          <div class="flex items-start p-3 bg-surface-container-low rounded-lg border border-outline-variant">
+            <span class="material-symbols-outlined text-on-surface-variant mr-3" data-icon="schedule">schedule</span>
+            <div>
+              <p class="font-data-tabular text-data-tabular text-on-surface">Upcoming: Annual Return</p>
+              <p class="text-body-sm text-on-surface-variant">Due: 31st Dec 2023</p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="w-full mt-6 py-2 bg-surface-container-high text-on-surface font-semibold rounded-lg text-body-sm hover:bg-surface-variant transition-all">
+          Generate GST Summary
+        </button>
+      </div>
+      <!-- Profit & Loss Summary Card -->
+      <div class="col-span-12 bg-surface border border-outline-variant rounded-lg overflow-hidden">
+        <div
+          class="px-6 py-4 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+          <h4 class="font-title-sm text-title-sm text-on-surface">Profit &amp; Loss Summary (Q2)</h4>
+          <span
+            class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-label-caps">PROFITABLE</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 divide-x divide-outline-variant">
+          <div class="p-6">
+            <p class="text-label-caps text-on-surface-variant mb-1">TOTAL REVENUE</p>
+            <p class="font-display-lg text-2xl text-on-surface">₹ 42,85,200</p>
+            <div class="flex items-center text-secondary text-body-sm mt-2">
+              <span class="material-symbols-outlined text-sm mr-1" data-icon="trending_up">trending_up</span>
+              12.4% vs Last Quarter
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-label-caps text-on-surface-variant mb-1">OPERATING EXPENSES</p>
+            <p class="font-display-lg text-2xl text-on-surface">₹ 28,12,000</p>
+            <div class="flex items-center text-error text-body-sm mt-2">
+              <span class="material-symbols-outlined text-sm mr-1" data-icon="trending_up">trending_up</span>
+              4.2% vs Last Quarter
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-label-caps text-on-surface-variant mb-1">GROSS MARGIN</p>
+            <p class="font-display-lg text-2xl text-secondary">₹ 14,73,200</p>
+            <div class="flex items-center text-on-surface-variant text-body-sm mt-2">
+              34.3% Margin Rate
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-label-caps text-on-surface-variant mb-1">TAX ESTIMATE (GST/INC)</p>
+            <p class="font-display-lg text-2xl text-on-surface">₹ 2,65,100</p>
+            <div class="flex items-center text-primary text-body-sm mt-2 underline cursor-pointer">
+              View Tax Breakdown
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Data Table: Recent High-Value Transactions -->
+      <div class="col-span-12 bg-surface border border-outline-variant rounded-lg">
+        <div class="px-6 py-4 border-b border-outline-variant">
+          <h4 class="font-title-sm text-title-sm text-on-surface">Detailed Revenue Breakdown</h4>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead
+              class="bg-surface-container-low font-label-caps text-on-surface-variant border-b border-outline-variant">
+              <tr>
+                <th class="px-6 py-3 font-semibold">PARTICULARS</th>
+                <th class="px-6 py-3 font-semibold text-right">REVENUE (₹)</th>
+                <th class="px-6 py-3 font-semibold text-right">COST (₹)</th>
+                <th class="px-6 py-3 font-semibold text-right">PROFIT (₹)</th>
+                <th class="px-6 py-3 font-semibold text-center">STATUS</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant">
+              <tr class="hover:bg-primary-container/5 transition-all">
+                <td class="px-6 py-4 font-data-tabular">Machinery Spare Parts Division</td>
+                <td class="px-6 py-4 font-data-tabular text-right">18,40,000</td>
+                <td class="px-6 py-4 font-data-tabular text-right">12,10,000</td>
+                <td class="px-6 py-4 font-data-tabular text-right text-secondary">6,30,000</td>
+                <td class="px-6 py-4 text-center">
+                  <span class="px-2 py-1 bg-secondary/10 text-secondary rounded text-label-caps">STABLE</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-primary-container/5 transition-all">
+                <td class="px-6 py-4 font-data-tabular">Annual Maintenance Contracts</td>
+                <td class="px-6 py-4 font-data-tabular text-right">12,25,000</td>
+                <td class="px-6 py-4 font-data-tabular text-right">4,50,000</td>
+                <td class="px-6 py-4 font-data-tabular text-right text-secondary">7,75,000</td>
+                <td class="px-6 py-4 text-center">
+                  <span class="px-2 py-1 bg-primary/10 text-primary rounded text-label-caps">GROWING</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-primary-container/5 transition-all">
+                <td class="px-6 py-4 font-data-tabular">Export - Southeast Asia Unit</td>
+                <td class="px-6 py-4 font-data-tabular text-right">9,50,000</td>
+                <td class="px-6 py-4 font-data-tabular text-right">8,90,000</td>
+                <td class="px-6 py-4 font-data-tabular text-right text-secondary">60,000</td>
+                <td class="px-6 py-4 text-center">
+                  <span class="px-2 py-1 bg-error/10 text-error rounded text-label-caps">LOW MARGIN</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Contextual Help / Insights (Asymmetric Layout element) -->
+  <div
+    class="fixed bottom-8 right-8 w-80 bg-primary text-white p-6 rounded-xl shadow-lg border border-on-primary-fixed-variant">
+    <div class="flex items-center mb-3">
+      <span class="material-symbols-outlined mr-2" data-icon="lightbulb">lightbulb</span>
+      <h5 class="font-title-sm text-sm">Munimji AI Insights</h5>
+    </div>
+    <p class="text-body-sm opacity-90 leading-relaxed mb-4">
+      Your operating expenses have increased by 4.2% primarily due to raw material logistics. We recommend auditing the
+      'Export Unit' ledger for potential input tax credit leaks.
+    </p>
+    <button class="w-full py-2 bg-white text-primary font-bold rounded text-body-sm hover:bg-opacity-90">
+      View Audit Report
+    </button>
+  </div>
+</body>
+
+</html>

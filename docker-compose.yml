@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - '4000:4000'
+    environment:
+      - PORT=4000
+      - MONGO_URI=mongodb+srv://dhinadts:Schizo123@ledger.w7d6h9e.mongodb.net/ledger
+    depends_on:
+      - mongo
+  frontend:
+    build: ./frontend
+    ports:
+      - '8080:8080'
+    depends_on:
+      - backend
+  mongo:
+    image: mongo:6.0
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+    command: ["mongod", "--auth"]
+volumes:
+  mongo-data:
+    driver: local

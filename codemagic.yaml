@@ -1,0 +1,165 @@
+workflows:
+  android-release:
+    name: LedgerVault Android Release
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      flutter: stable
+      groups:
+        - ledger_vault_android
+      vars:
+        PACKAGE_NAME: "com.dhinadts.ledger"
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: "main"
+          include: true
+          source: true
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd frontend
+          flutter pub get
+      - name: Analyze Flutter
+        script: |
+          cd frontend
+          flutter analyze
+      - name: Configure Android signing
+        script: |
+          cd frontend/android
+          echo "$CM_KEYSTORE" | base64 --decode > ledger-vault-release.keystore
+          printf "storePassword=%s\nkeyPassword=%s\nkeyAlias=%s\nstoreFile=%s\n" \
+            "$CM_KEYSTORE_PASSWORD" \
+            "$CM_KEY_PASSWORD" \
+            "$CM_KEY_ALIAS" \
+            "ledger-vault-release.keystore" > key.properties
+      - name: Build Android App Bundle
+        script: |
+          cd frontend
+          flutter build appbundle --release --build-name=${BUILD_NAME:-0.1.0} --build-number=${BUILD_NUMBER:-$PROJECT_BUILD_NUMBER}
+    artifacts:
+      - frontend/build/app/outputs/bundle/release/*.aab
+      - frontend/build/app/outputs/flutter-apk/*.apk
+    publishing:
+      email:
+        recipients:
+          - $RELEASE_EMAIL
+        notify:
+          success: true
+          failure: true
+
+  ios-release:
+    name: LedgerVault iOS Release
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      groups:
+        - ledger_vault_ios
+      vars:
+        BUNDLE_ID: "com.dhinadts.ledgervault"
+    integrations:
+      app_store_connect: LedgerVault App Store Connect
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: "main"
+          include: true
+          source: true
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd frontend
+          flutter pub get
+      - name: Analyze Flutter
+        script: |
+          cd frontend
+          flutter analyze
+      - name: Set up iOS code signing
+        script: |
+          cd frontend
+          xcode-project use-profiles
+      - name: Build iOS IPA
+        script: |
+          cd frontend
+          flutter build ipa --release --build-name=${BUILD_NAME:-0.1.0} --build-number=${BUILD_NUMBER:-$PROJECT_BUILD_NUMBER} --export-options-plist=/Users/builder/export_options.plist
+    artifacts:
+      - frontend/build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - frontend/flutter_drive.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+      email:
+        recipients:
+          - $RELEASE_EMAIL
+        notify:
+          success: true
+          failure: true
+
+  android-ios-release:
+    name: LedgerVault Android and iOS Release
+    max_build_duration: 90
+    instance_type: mac_mini_m2
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      groups:
+        - ledger_vault_android
+        - ledger_vault_ios
+      vars:
+        PACKAGE_NAME: "com.dhinadts.ledger"
+        BUNDLE_ID: "com.dhinadts.ledgervault"
+    integrations:
+      app_store_connect: LedgerVault App Store Connect
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd frontend
+          flutter pub get
+      - name: Analyze Flutter
+        script: |
+          cd frontend
+          flutter analyze
+      - name: Configure Android signing
+        script: |
+          cd frontend/android
+          echo "$CM_KEYSTORE" | base64 --decode > ledger-vault-release.keystore
+          printf "storePassword=%s\nkeyPassword=%s\nkeyAlias=%s\nstoreFile=%s\n" \
+            "$CM_KEYSTORE_PASSWORD" \
+            "$CM_KEY_PASSWORD" \
+            "$CM_KEY_ALIAS" \
+            "ledger-vault-release.keystore" > key.properties
+      - name: Build Android App Bundle
+        script: |
+          cd frontend
+          flutter build appbundle --release --build-name=${BUILD_NAME:-0.1.0} --build-number=${BUILD_NUMBER:-$PROJECT_BUILD_NUMBER}
+      - name: Set up iOS code signing
+        script: |
+          cd frontend
+          xcode-project use-profiles
+      - name: Build iOS IPA
+        script: |
+          cd frontend
+          flutter build ipa --release --build-name=${BUILD_NAME:-0.1.0} --build-number=${BUILD_NUMBER:-$PROJECT_BUILD_NUMBER} --export-options-plist=/Users/builder/export_options.plist
+    artifacts:
+      - frontend/build/app/outputs/bundle/release/*.aab
+      - frontend/build/app/outputs/flutter-apk/*.apk
+      - frontend/build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+      email:
+        recipients:
+          - $RELEASE_EMAIL
+        notify:
+          success: true
+          failure: true

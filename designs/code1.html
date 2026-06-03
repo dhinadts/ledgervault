@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Dhinakaran Kalaimani - General Ledger</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "primary-fixed-dim": "#bdc2ff",
+                                                "tertiary-fixed": "#ffdad6",
+                                                "primary-fixed": "#e0e0ff",
+                                                "on-background": "#1b1b21",
+                                                "outline": "#767683",
+                                                "inverse-on-surface": "#f2eff8",
+                                                "secondary-fixed-dim": "#88d982",
+                                                "secondary-fixed": "#a3f69c",
+                                                "tertiary-container": "#670007",
+                                                "background": "#fbf8ff",
+                                                "on-tertiary-container": "#ff635a",
+                                                "surface-variant": "#e4e1ea",
+                                                "on-tertiary": "#ffffff",
+                                                "on-primary-container": "#8690ee",
+                                                "tertiary": "#400003",
+                                                "surface-tint": "#4c56af",
+                                                "on-tertiary-fixed": "#410003",
+                                                "error": "#ba1a1a",
+                                                "on-primary": "#ffffff",
+                                                "inverse-primary": "#bdc2ff",
+                                                "tertiary-fixed-dim": "#ffb4ac",
+                                                "surface-container-highest": "#e4e1ea",
+                                                "error-container": "#ffdad6",
+                                                "primary": "#000666",
+                                                "on-secondary": "#ffffff",
+                                                "primary-container": "#1a237e",
+                                                "on-secondary-container": "#217128",
+                                                "outline-variant": "#c6c5d4",
+                                                "surface": "#fbf8ff",
+                                                "surface-container-low": "#f5f2fb",
+                                                "on-tertiary-fixed-variant": "#93000e",
+                                                "secondary-container": "#a0f399",
+                                                "on-secondary-fixed": "#002204",
+                                                "on-surface": "#1b1b21",
+                                                "inverse-surface": "#303036",
+                                                "surface-container": "#efecf5",
+                                                "on-surface-variant": "#454652",
+                                                "on-secondary-fixed-variant": "#005312",
+                                                "surface-dim": "#dbd9e1",
+                                                "secondary": "#1b6d24",
+                                                "surface-container-high": "#eae7ef",
+                                                "on-error": "#ffffff",
+                                                "surface-bright": "#fbf8ff",
+                                                "surface-container-lowest": "#ffffff",
+                                                "on-error-container": "#93000a",
+                                                "on-primary-fixed": "#000767",
+                                                "on-primary-fixed-variant": "#343d96"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.125rem",
+                                                "lg": "0.25rem",
+                                                "xl": "0.5rem",
+                                                "full": "0.75rem"
+                                        },
+                                        "spacing": {
+                                                "stack-md": "16px",
+                                                "stack-lg": "32px",
+                                                "stack-sm": "8px",
+                                                "table-cell-padding": "12px 16px",
+                                                "unit": "4px",
+                                                "gutter": "16px",
+                                                "container-padding": "24px"
+                                        },
+                                        "fontFamily": {
+                                                "display-lg": ["IBM Plex Sans"],
+                                                "data-tabular": ["Inter"],
+                                                "body-md": ["Inter"],
+                                                "body-sm": ["Inter"],
+                                                "title-sm": ["Inter"],
+                                                "headline-md": ["IBM Plex Sans"],
+                                                "label-caps": ["Inter"]
+                                        },
+                                        "fontSize": {
+                                                "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                                                "data-tabular": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                                                "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                                                "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                                                "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                                                "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                                                "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                .material-symbols-outlined {
+                        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                }
+
+                ::-webkit-scrollbar {
+                        width: 8px;
+                        height: 8px;
+                }
+
+                ::-webkit-scrollbar-track {
+                        background: #fbf8ff;
+                }
+
+                ::-webkit-scrollbar-thumb {
+                        background: #c6c5d4;
+                        border-radius: 4px;
+                }
+
+                ::-webkit-scrollbar-thumb:hover {
+                        background: #767683;
+                }
+
+                .ledger-table-container {
+                        scrollbar-gutter: stable;
+                }
+        </style>
+</head>
+
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+        <!-- SideNavBar -->
+        <aside
+                class="h-screen w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant flex flex-col h-full py-stack-lg z-50">
+                <div class="px-6 mb-8">
+                        <h1 class="font-headline-md text-headline-md font-bold text-primary">Dhinakaran Kalaimani</h1>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">SSI Edition</p>
+                </div>
+                <nav class="flex-1 px-4 space-y-1">
+                        <a class="flex items-center px-3 py-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low rounded-lg"
+                                href="#">
+                                <span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+                                <span class="font-body-md">Dashboard</span>
+                        </a>
+                        <a class="flex items-center px-3 py-2 transition-colors duration-200 text-primary font-bold border-r-4 border-primary bg-primary-container/10 rounded-l-lg"
+                                href="#">
+                                <span class="material-symbols-outlined mr-3" data-icon="menu_book">menu_book</span>
+                                <span class="font-body-md">Ledger</span>
+                        </a>
+                        <a class="flex items-center px-3 py-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low rounded-lg"
+                                href="#">
+                                <span class="material-symbols-outlined mr-3"
+                                        data-icon="account_balance">account_balance</span>
+                                <span class="font-body-md">Balance Sheet</span>
+                        </a>
+                        <a class="flex items-center px-3 py-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low rounded-lg"
+                                href="#">
+                                <span class="material-symbols-outlined mr-3" data-icon="assessment">assessment</span>
+                                <span class="font-body-md">Reports</span>
+                        </a>
+                        <a class="flex items-center px-3 py-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low rounded-lg"
+                                href="#">
+                                <span class="material-symbols-outlined mr-3" data-icon="settings">settings</span>
+                                <span class="font-body-md">Settings</span>
+                        </a>
+                </nav>
+                <div class="px-4 mt-auto">
+                        <button
+                                class="w-full py-3 bg-primary-container text-white font-bold rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                                <span class="material-symbols-outlined" data-icon="add">add</span>
+                                Add Entry
+                        </button>
+                        <div class="mt-6 flex items-center gap-3 px-2 border-t border-outline-variant pt-6">
+                                <img alt="User Profile"
+                                        class="w-10 h-10 rounded-full object-cover border border-outline-variant"
+                                        data-alt="Professional portrait of a middle-aged Indian male business owner in a modern corporate setting. He is wearing a crisp white formal shirt and dark blue blazer, projecting an air of authority and reliability. The lighting is soft and natural, emphasizing a high-contrast but professional atmosphere. The background is a blurred office environment with hints of deep navy blue and neutral gray tones."
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVqmh9CgD0U8gJRxpNKTdwFtmyO2oTMK3V4MkLfdr2G5RJe9oX7vM9sCwAWArbLqP7_nzwMQq2Oq9GNjuEjO3hN3rHR0S5VWjmz1kF1WMnRIK14dupTjZ4Ms_pJspJHrvP02NLbP0XRJDaCuVVLG_86F6hyVVDKUNJEoBFJ4U6_kYVMRyBsNw4juSqDcepB7RpYu-mGI__BKXVY6XhBtTV2-EnL5Mc39xTEiQkfTcH2cFBssvYvbE90Zc1ECeM1ovElJx2FGfv9jU8" />
+                                <div class="overflow-hidden">
+                                        <p class="font-data-tabular text-on-surface truncate">DHINADTS IT Solutions and
+                                                Support OPC PVT Ltd.</p>
+                                        <p class="font-label-caps text-on-surface-variant">ADMIN SESSION</p>
+                                </div>
+                        </div>
+                </div>
+        </aside>
+        <!-- Main Content Area -->
+        <main class="ml-64 min-h-screen flex flex-col">
+                <!-- TopNavBar -->
+                <header
+                        class="flex justify-between items-center h-16 px-container-padding bg-surface border-b border-outline-variant sticky top-0 z-40">
+                        <div class="flex items-center gap-4">
+                                <span class="font-headline-md text-headline-md font-bold text-primary">DHINADTS IT
+                                        Solutions and Support OPC PVT Ltd.</span>
+                        </div>
+                        <div class="flex items-center gap-6">
+                                <div class="relative">
+                                        <input class="bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 text-body-sm w-64 focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
+                                                placeholder="Search entries, vouchers..." type="text" />
+                                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]"
+                                                data-icon="search">search</span>
+                                </div>
+                                <div class="flex items-center gap-4 text-on-surface-variant">
+                                        <button class="hover:text-primary transition-all duration-150 relative">
+                                                <span class="material-symbols-outlined"
+                                                        data-icon="notifications">notifications</span>
+                                                <span
+                                                        class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+                                        </button>
+                                        <button class="hover:text-primary transition-all duration-150">
+                                                <span class="material-symbols-outlined" data-icon="help">help</span>
+                                        </button>
+                                </div>
+                        </div>
+                </header>
+                <!-- Page Content -->
+                <div class="p-container-padding flex-1">
+                        <!-- Summary Balance Cards -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+                                <div
+                                        class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-lg">
+                                        <p class="font-label-caps text-on-surface-variant mb-1">CASH BALANCE</p>
+                                        <h3 class="font-display-lg text-display-lg text-primary">₹ 4,52,890.00</h3>
+                                        <p
+                                                class="font-body-sm text-secondary-container bg-secondary px-2 py-0.5 rounded inline-block mt-2">
+                                                Active Ledger</p>
+                                </div>
+                                <div
+                                        class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-lg">
+                                        <p class="font-label-caps text-on-surface-variant mb-1">TOTAL RECEIVABLES</p>
+                                        <h3 class="font-display-lg text-display-lg text-secondary">₹ 12,18,400.00</h3>
+                                        <p class="font-body-sm text-on-surface-variant mt-2">12 Pending Vouchers</p>
+                                </div>
+                                <div
+                                        class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-lg">
+                                        <p class="font-label-caps text-on-surface-variant mb-1">TOTAL PAYABLES</p>
+                                        <h3 class="font-display-lg text-display-lg text-error">₹ 3,45,200.00</h3>
+                                        <p class="font-body-sm text-on-surface-variant mt-2">Due in 15 Days</p>
+                                </div>
+                        </div>
+                        <!-- Filters Section -->
+                        <div
+                                class="bg-surface border border-outline-variant p-stack-md rounded-lg mb-gutter flex flex-wrap items-end gap-gutter">
+                                <div class="flex-1 min-w-[200px]">
+                                        <label class="font-label-caps text-on-surface-variant block mb-1">DATE
+                                                RANGE</label>
+                                        <div class="flex items-center gap-2">
+                                                <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-2 text-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                                                        type="date" />
+                                                <span class="text-on-surface-variant">to</span>
+                                                <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-2 text-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                                                        type="date" />
+                                        </div>
+                                </div>
+                                <div class="w-48">
+                                        <label class="font-label-caps text-on-surface-variant block mb-1">ACCOUNT
+                                                TYPE</label>
+                                        <select
+                                                class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-2 text-body-sm focus:border-primary outline-none">
+                                                <option>All Accounts</option>
+                                                <option>Assets</option>
+                                                <option>Liabilities</option>
+                                                <option>Income</option>
+                                                <option>Expenditure</option>
+                                        </select>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                        <button
+                                                class="px-4 py-2 bg-primary text-white font-bold rounded-lg flex items-center gap-2 hover:bg-primary-container transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]"
+                                                        data-icon="filter_list">filter_list</span>
+                                                Apply Filter
+                                        </button>
+                                        <button
+                                                class="px-4 py-2 border border-primary text-primary font-bold rounded-lg flex items-center gap-2 hover:bg-surface-container-low transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]"
+                                                        data-icon="file_download">file_download</span>
+                                                Export
+                                        </button>
+                                </div>
+                        </div>
+                        <!-- Main Ledger Table -->
+                        <div
+                                class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col shadow-sm">
+                                <div class="overflow-x-auto ledger-table-container">
+                                        <table class="w-full border-collapse">
+                                                <thead
+                                                        class="bg-surface-container sticky top-0 z-10 border-b border-outline-variant">
+                                                        <tr>
+                                                                <th
+                                                                        class="text-left py-table-cell-padding px-gutter font-label-caps text-on-surface-variant whitespace-nowrap">
+                                                                        DATE</th>
+                                                                <th
+                                                                        class="text-left py-table-cell-padding px-gutter font-label-caps text-on-surface-variant whitespace-nowrap">
+                                                                        PARTICULARS</th>
+                                                                <th
+                                                                        class="text-left py-table-cell-padding px-gutter font-label-caps text-on-surface-variant whitespace-nowrap">
+                                                                        LF</th>
+                                                                <th
+                                                                        class="text-right py-table-cell-padding px-gutter font-label-caps text-on-surface-variant whitespace-nowrap">
+                                                                        DEBIT (₹)</th>
+                                                                <th
+                                                                        class="text-right py-table-cell-padding px-gutter font-label-caps text-on-surface-variant whitespace-nowrap">
+                                                                        CREDIT (₹)</th>
+                                                                <th
+                                                                        class="text-right py-table-cell-padding px-gutter font-label-caps text-on-surface-variant whitespace-nowrap">
+                                                                        ACTION</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-outline-variant">
+                                                        <!-- Entry 1 -->
+                                                        <tr class="hover:bg-primary/5 transition-colors group">
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter font-data-tabular">
+                                                                        01 Oct 2023</td>
+                                                                <td class="py-table-cell-padding px-gutter">
+                                                                        <div class="flex flex-col">
+                                                                                <span
+                                                                                        class="font-data-tabular text-on-surface">Opening
+                                                                                        Balance</span>
+                                                                                <span
+                                                                                        class="text-[11px] text-on-surface-variant">Brought
+                                                                                        Forward from Sep</span>
+                                                                        </div>
+                                                                </td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter font-data-tabular">
+                                                                        GL/01</td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter text-right font-data-tabular">
+                                                                        3,80,000.00</td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter text-right font-data-tabular">
+                                                                        0.00</td>
+                                                                <td class="py-table-cell-padding px-gutter text-right">
+                                                                        <button
+                                                                                class="text-on-surface-variant hover:text-primary transition-colors">
+                                                                                <span class="material-symbols-outlined text-[20px]"
+                                                                                        data-icon="more_vert">more_vert</span>
+                                                                        </button>
+                                                                </td>
+                                                        </tr>
+                                                        <!-- Entry 2 -->
+                                                        <tr class="hover:bg-primary/5 transition-colors group">
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter font-data-tabular">
+                                                                        04 Oct 2023</td>
+                                                                <td class="py-table-cell-padding px-gutter">
+                                                                        <div class="flex flex-col">
+                                                                                <span
+                                                                                        class="font-data-tabular text-on-surface">To
+                                                                                        Sharma &amp; Sons Pvt Ltd</span>
+                                                                                <span
+                                                                                        class="text-[11px] text-on-surface-variant">Voucher
+                                                                                        #PV-9021 (Raw Material)</span>
+                                                                        </div>
+                                                                </td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter font-data-tabular">
+                                                                        GL/45</td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter text-right font-data-tabular">
+                                                                        0.00</td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter text-right font-data-tabular text-error">
+                                                                        1,25,000.00</td>
+                                                                <td class="py-table-cell-padding px-gutter text-right">
+                                                                        <button
+                                                                                class="text-on-surface-variant hover:text-primary transition-colors">
+                                                                                <span class="material-symbols-outlined text-[20px]"
+                                                                                        data-icon="more_vert">more_vert</span>
+                                                                        </button>
+                                                                </td>
+                                                        </tr>
+                                                        <!-- Entry 3 -->
+                                                        <tr class="hover:bg-primary/5 transition-colors group">
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter font-data-tabular">
+                                                                        08 Oct 2023</td>
+                                                                <td class="py-table-cell-padding px-gutter">
+                                                                        <div class="flex flex-col">
+                                                                                <span
+                                                                                        class="font-data-tabular text-on-surface">By
+                                                                                        HDFC Bank A/c</span>
+                                                                                <span
+                                                                                        class="text-[11px] text-on-surface-variant">Transfer
+                                                                                        for Salary Disbursal</span>
+                                                                        </div>
+                                                                </td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter font-data-tabular">
+                                                                        GL/12</td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter text-right font-data-tabular">
+                                                                        4,50,000.00</td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter text-right font-data-tabular">
+                                                                        0.00</td>
+                                                                <td class="py-table-cell-padding px-gutter text-right">
+                                                                        <button
+                                                                                class="text-on-surface-variant hover:text-primary transition-colors">
+                                                                                <span class="material-symbols-outlined text-[20px]"
+                                                                                        data-icon="more_vert">more_vert</span>
+                                                                        </button>
+                                                                </td>
+                                                        </tr>
+                                                        <!-- Entry 4 -->
+                                                        <tr class="hover:bg-primary/5 transition-colors group">
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter font-data-tabular">
+                                                                        12 Oct 2023</td>
+                                                                <td class="py-table-cell-padding px-gutter">
+                                                                        <div class="flex flex-col">
+                                                                                <span
+                                                                                        class="font-data-tabular text-on-surface">To
+                                                                                        Electricity Board</span>
+                                                                                <span
+                                                                                        class="text-[11px] text-on-surface-variant">Factory
+                                                                                        Bill Oct #EB882</span>
+                                                                        </div>
+                                                                </td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter font-data-tabular">
+                                                                        GL/88</td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter text-right font-data-tabular">
+                                                                        0.00</td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter text-right font-data-tabular text-error">
+                                                                        42,110.00</td>
+                                                                <td class="py-table-cell-padding px-gutter text-right">
+                                                                        <button
+                                                                                class="text-on-surface-variant hover:text-primary transition-colors">
+                                                                                <span class="material-symbols-outlined text-[20px]"
+                                                                                        data-icon="more_vert">more_vert</span>
+                                                                        </button>
+                                                                </td>
+                                                        </tr>
+                                                        <!-- Entry 5 -->
+                                                        <tr class="hover:bg-primary/5 transition-colors group">
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter font-data-tabular">
+                                                                        15 Oct 2023</td>
+                                                                <td class="py-table-cell-padding px-gutter">
+                                                                        <div class="flex flex-col">
+                                                                                <span
+                                                                                        class="font-data-tabular text-on-surface">By
+                                                                                        Cash Sales</span>
+                                                                                <span
+                                                                                        class="text-[11px] text-on-surface-variant">Retail
+                                                                                        Counter Sale - Batch A</span>
+                                                                        </div>
+                                                                </td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter font-data-tabular">
+                                                                        GL/09</td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter text-right font-data-tabular text-secondary">
+                                                                        2,10,000.00</td>
+                                                                <td
+                                                                        class="py-table-cell-padding px-gutter text-right font-data-tabular">
+                                                                        0.00</td>
+                                                                <td class="py-table-cell-padding px-gutter text-right">
+                                                                        <button
+                                                                                class="text-on-surface-variant hover:text-primary transition-colors">
+                                                                                <span class="material-symbols-outlined text-[20px]"
+                                                                                        data-icon="more_vert">more_vert</span>
+                                                                        </button>
+                                                                </td>
+                                                        </tr>
+                                                </tbody>
+                                                <tfoot class="bg-surface-container-low border-t-2 border-primary/20">
+                                                        <tr>
+                                                                <td class="py-4 px-gutter text-right font-title-sm text-primary"
+                                                                        colspan="3">RUNNING BALANCE TOTAL</td>
+                                                                <td
+                                                                        class="py-4 px-gutter text-right font-display-lg text-secondary">
+                                                                        ₹ 10,40,000.00</td>
+                                                                <td
+                                                                        class="py-4 px-gutter text-right font-display-lg text-error">
+                                                                        ₹ 1,67,110.00</td>
+                                                                <td
+                                                                        class="bg-primary/5 py-4 px-gutter text-right font-headline-md text-primary font-bold">
+                                                                        ₹ 8,72,890.00</td>
+                                                        </tr>
+                                                </tfoot>
+                                        </table>
+                                </div>
+                        </div>
+                        <!-- Floating Action Button (FAB) for Ledger Context -->
+                        <button
+                                class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform group">
+                                <span class="material-symbols-outlined text-[24px]" data-icon="add_task">add_task</span>
+                                <span
+                                        class="absolute right-16 bg-inverse-surface text-inverse-on-surface px-3 py-1 rounded-md text-body-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">New
+                                        Transaction Entry</span>
+                        </button>
+                </div>
+        </main>
+</body>
+
+</html>

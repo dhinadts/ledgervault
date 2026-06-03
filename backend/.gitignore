@@ -1,0 +1,38 @@
+# LedgerVault backend ignore
+
+# Dependencies and build output
+node_modules/
+dist/
+build/
+coverage/
+
+# Prisma generated/runtime artifacts
+node_modules/.prisma/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+
+# Uploaded audit documents and runtime storage
+uploads/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo

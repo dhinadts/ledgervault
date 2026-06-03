@@ -1,0 +1,58 @@
+# LedgerVault Flutter frontend ignore
+
+# Dart / Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+**/doc/api/
+
+# Flutter generated files
+android/.gradle/
+android/app/build/
+android/app/debug/
+android/app/profile/
+android/app/release/
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/.last_build_id
+linux/flutter/ephemeral/
+macos/Flutter/ephemeral/
+windows/flutter/ephemeral/
+web/flutter_service_worker.js
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+android/key.properties
+android/*.keystore
+android/*.jks
+ios/*.mobileprovision
+ios/*.p12
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs / symbols / obfuscation
+*.log
+app.*.symbols
+app.*.map.json
+
+# JS tooling if used by web build helpers
+node_modules/
+yarn.lock
+pnpm-lock.yaml
+build

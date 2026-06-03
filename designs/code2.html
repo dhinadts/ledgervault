@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dhinakaran Kalaimani - DHINADTS IT Solutions and Support OPC PVT Ltd. Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#bdc2ff",
+                        "tertiary-fixed": "#ffdad6",
+                        "primary-fixed": "#e0e0ff",
+                        "on-background": "#1b1b21",
+                        "outline": "#767683",
+                        "inverse-on-surface": "#f2eff8",
+                        "secondary-fixed-dim": "#88d982",
+                        "secondary-fixed": "#a3f69c",
+                        "tertiary-container": "#670007",
+                        "background": "#fbf8ff",
+                        "on-tertiary-container": "#ff635a",
+                        "surface-variant": "#e4e1ea",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#8690ee",
+                        "tertiary": "#400003",
+                        "surface-tint": "#4c56af",
+                        "on-tertiary-fixed": "#410003",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#bdc2ff",
+                        "tertiary-fixed-dim": "#ffb4ac",
+                        "surface-container-highest": "#e4e1ea",
+                        "error-container": "#ffdad6",
+                        "primary": "#000666",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#1a237e",
+                        "on-secondary-container": "#217128",
+                        "outline-variant": "#c6c5d4",
+                        "surface": "#fbf8ff",
+                        "surface-container-low": "#f5f2fb",
+                        "on-tertiary-fixed-variant": "#93000e",
+                        "secondary-container": "#a0f399",
+                        "on-secondary-fixed": "#002204",
+                        "on-surface": "#1b1b21",
+                        "inverse-surface": "#303036",
+                        "surface-container": "#efecf5",
+                        "on-surface-variant": "#454652",
+                        "on-secondary-fixed-variant": "#005312",
+                        "surface-dim": "#dbd9e1",
+                        "secondary": "#1b6d24",
+                        "surface-container-high": "#eae7ef",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#fbf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#000767",
+                        "on-primary-fixed-variant": "#343d96"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "table-cell-padding": "12px 16px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["IBM Plex Sans"],
+                        "data-tabular": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-tabular": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            /* From Style Guidance Surface Tiers */
+            color: #1b1b21;
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-body-md">
+    <!-- SideNavBar (Authority: JSON & Contextual mapping) -->
+    <aside
+        class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-on-background border-r border-outline-variant dark:border-outline flex flex-col py-stack-lg z-50">
+        <div class="px-container-padding mb-stack-lg">
+            <h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Dhinakaran
+                Kalaimani</h1>
+            <p class="font-body-sm text-on-surface-variant">SSI Edition</p>
+        </div>
+        <nav class="flex-grow">
+            <!-- Active Tab: Dashboard -->
+            <a class="flex items-center px-container-padding py-3 text-primary dark:text-primary-fixed-dim font-bold border-r-4 border-primary dark:border-primary-fixed-dim bg-primary-container/10 transition-colors duration-200"
+                href="#">
+                <span class="material-symbols-outlined mr-3">dashboard</span>
+                Dashboard
+            </a>
+            <a class="flex items-center px-container-padding py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant/10 transition-colors duration-200"
+                href="#">
+                <span class="material-symbols-outlined mr-3">menu_book</span>
+                Ledger
+            </a>
+            <a class="flex items-center px-container-padding py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant/10 transition-colors duration-200"
+                href="#">
+                <span class="material-symbols-outlined mr-3">account_balance</span>
+                Balance Sheet
+            </a>
+            <a class="flex items-center px-container-padding py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant/10 transition-colors duration-200"
+                href="#">
+                <span class="material-symbols-outlined mr-3">assessment</span>
+                Reports
+            </a>
+            <a class="flex items-center px-container-padding py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant/10 transition-colors duration-200"
+                href="#">
+                <span class="material-symbols-outlined mr-3">settings</span>
+                Settings
+            </a>
+        </nav>
+        <div class="px-container-padding mt-auto">
+            <button
+                class="w-full bg-primary-container text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 shadow-sm hover:opacity-90 transition-all">
+                <span class="material-symbols-outlined">add_circle</span>
+                Add Entry
+            </button>
+        </div>
+    </aside>
+    <!-- TopNavBar -->
+    <header
+        class="docked full-width top-0 sticky z-40 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline flex justify-between items-center h-16 px-container-padding ml-64">
+        <div class="flex items-center gap-4">
+            <span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">DHINADTS IT
+                Solutions and Support OPC PVT Ltd.</span>
+        </div>
+        <div class="flex items-center gap-stack-md">
+            <div class="relative">
+                <input
+                    class="bg-surface-container-low border border-outline-variant rounded-full py-2 px-10 text-body-sm w-64 focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                    placeholder="Search accounts, invoices..." type="text" />
+                <span
+                    class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[20px]">search</span>
+            </div>
+            <button class="text-on-surface-variant hover:text-primary transition-all duration-150">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="text-on-surface-variant hover:text-primary transition-all duration-150">
+                <span class="material-symbols-outlined">help</span>
+            </button>
+            <div class="w-8 h-8 rounded-full overflow-hidden bg-outline-variant">
+                <img alt="Account Owner" class="w-full h-full object-cover"
+                    data-alt="A professional headshot of a middle-aged Indian businessman with a confident and trustworthy expression. He is wearing a formal navy blue suit and a crisp white shirt, set against a blurred modern corporate office background. The lighting is soft and professional, emphasizing a high-contrast corporate aesthetic suitable for a financial management platform."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy1wfo3fCX2w3dtxp7t-wuoVgX8b5K4i0fP4ecSwW5gpv2vJ6MOw7HZbK22cpIMNrbMm5AsT2sBSf-DYf1qLzMLmXW2OqJLibdTP9RdPCQhRVFegXLGoYmwDoslwH99oatpVnlsuDhO1GXqFzNMxBx09nKcpmepAxIprHKYM6MMgJoE_9-BUHrWJAbxz1HYu6BQXX93jjUPl9VWeFsnlpGM7LG4adRXPLJ53cc5mizFfSca5YRZ74ZBVJY5_vHjOT8JxM3pvMavvS7" />
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Area -->
+    <main class="ml-64 p-container-padding space-y-stack-lg">
+        <!-- Key Metrics: Balance Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            <!-- Current Balance -->
+            <div class="bg-white border border-outline-variant p-container-padding rounded-lg shadow-sm">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-label-caps text-label-caps text-on-surface-variant">CURRENT CASH / BANK</span>
+                    <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+                </div>
+                <div class="text-display-lg font-display-lg text-primary">₹ 14,82,500.00</div>
+                <div
+                    class="mt-2 text-body-sm text-on-secondary-container bg-secondary-container/10 px-2 py-1 inline-block rounded">
+                    +4.2% from last month
+                </div>
+            </div>
+            <!-- Total Receivables (Debtors) -->
+            <div class="bg-white border border-outline-variant p-container-padding rounded-lg shadow-sm">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-label-caps text-label-caps text-on-surface-variant">TOTAL RECEIVABLES
+                        (DEBTORS)</span>
+                    <span class="material-symbols-outlined text-secondary">trending_up</span>
+                </div>
+                <div class="text-display-lg font-display-lg text-secondary">₹ 8,45,210.00</div>
+                <div class="mt-2 text-body-sm text-on-surface-variant">12 Pending Invoices</div>
+            </div>
+            <!-- Total Payables (Creditors) -->
+            <div class="bg-white border border-outline-variant p-container-padding rounded-lg shadow-sm">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-label-caps text-label-caps text-on-surface-variant">TOTAL PAYABLES
+                        (CREDITORS)</span>
+                    <span class="material-symbols-outlined text-error">trending_down</span>
+                </div>
+                <div class="text-display-lg font-display-lg text-error">₹ 3,12,040.00</div>
+                <div class="mt-2 text-body-sm text-on-surface-variant">Due in 7 days: ₹ 45,000</div>
+            </div>
+        </div>
+        <!-- Sales vs Expenses & Monthly Summary -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+            <!-- Monthly Comparison -->
+            <div class="lg:col-span-8 bg-white border border-outline-variant p-container-padding rounded-lg">
+                <div class="flex justify-between items-center mb-stack-lg">
+                    <h2 class="font-title-sm text-title-sm text-primary">Monthly Performance: Sales vs Expenses</h2>
+                    <div class="flex gap-2">
+                        <span class="flex items-center gap-1 text-body-sm text-on-surface-variant">
+                            <span class="w-3 h-3 bg-primary rounded-full"></span> Sales
+                        </span>
+                        <span class="flex items-center gap-1 text-body-sm text-on-surface-variant">
+                            <span class="w-3 h-3 bg-error rounded-full"></span> Expenses
+                        </span>
+                    </div>
+                </div>
+                <!-- Mini-Summary Bars / Visual Representation -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between text-body-sm mb-1">
+                            <span>July 2023 Performance</span>
+                            <span class="font-bold">78% Target Achieved</span>
+                        </div>
+                        <div class="h-4 w-full bg-surface-container rounded-full overflow-hidden flex">
+                            <div class="h-full bg-primary" style="width: 65%"></div>
+                            <div class="h-full bg-error" style="width: 25%"></div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-stack-lg">
+                        <div class="border-l-4 border-primary pl-4">
+                            <p class="font-label-caps text-label-caps text-on-surface-variant">TOTAL SALES</p>
+                            <p class="text-headline-md font-headline-md">₹ 24.5L</p>
+                        </div>
+                        <div class="border-l-4 border-error pl-4">
+                            <p class="font-label-caps text-label-caps text-on-surface-variant">TOTAL EXPENSES</p>
+                            <p class="text-headline-md font-headline-md">₹ 12.8L</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Quick Actions & Stats -->
+            <div class="lg:col-span-4 space-y-gutter">
+                <div class="bg-primary text-white p-container-padding rounded-lg relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="font-title-sm text-title-sm mb-2">Net Margin</h3>
+                        <p class="text-display-lg font-display-lg">₹ 11.7L</p>
+                        <p class="text-body-sm opacity-80 mt-1">Net profit after all operating expenses this month.</p>
+                    </div>
+                    <!-- Abstract Background Shape -->
+                    <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-white opacity-10 rounded-full"></div>
+                </div>
+                <div class="bg-white border border-outline-variant p-stack-md rounded-lg">
+                    <h3 class="font-label-caps text-label-caps text-on-surface-variant mb-stack-sm">QUICK ACTIONS</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button
+                            class="flex flex-col items-center justify-center p-3 border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-primary">
+                            <span class="material-symbols-outlined mb-1">receipt_long</span>
+                            <span class="text-body-sm font-bold">New Invoice</span>
+                        </button>
+                        <button
+                            class="flex flex-col items-center justify-center p-3 border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-secondary">
+                            <span class="material-symbols-outlined mb-1">payments</span>
+                            <span class="text-body-sm font-bold">Payment In</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Recent Transactions Table -->
+        <div class="bg-white border border-outline-variant rounded-lg overflow-hidden">
+            <div class="p-container-padding border-b border-outline-variant flex justify-between items-center">
+                <h2 class="font-title-sm text-title-sm text-primary">Recent Transactions</h2>
+                <button class="text-primary font-bold text-body-sm flex items-center gap-1">
+                    View Ledger <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-surface-container-low">
+                        <tr>
+                            <th class="p-table-cell-padding font-label-caps text-label-caps text-on-surface-variant">
+                                DATE</th>
+                            <th class="p-table-cell-padding font-label-caps text-label-caps text-on-surface-variant">
+                                PARTICULARS / ACCOUNT</th>
+                            <th class="p-table-cell-padding font-label-caps text-label-caps text-on-surface-variant">
+                                TYPE</th>
+                            <th class="p-table-cell-padding font-label-caps text-label-caps text-on-surface-variant">
+                                STATUS</th>
+                            <th
+                                class="p-table-cell-padding font-label-caps text-label-caps text-on-surface-variant text-right">
+                                AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-outline-variant">
+                        <!-- Transaction Row 1 -->
+                        <tr class="hover:bg-primary/5 transition-colors cursor-pointer group">
+                            <td class="p-table-cell-padding font-data-tabular">24 Oct 2023</td>
+                            <td class="p-table-cell-padding">
+                                <p class="font-bold">Jai Hind Steel Suppliers</p>
+                                <p class="text-body-sm text-on-surface-variant">Raw Material Purchase - Invoice #882</p>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="material-symbols-outlined text-error mr-1">call_made</span> Expense
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span
+                                    class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-error/10 text-error uppercase">Pending</span>
+                            </td>
+                            <td class="p-table-cell-padding text-right font-data-tabular font-bold">₹ 1,25,000.00</td>
+                        </tr>
+                        <!-- Transaction Row 2 -->
+                        <tr class="hover:bg-primary/5 transition-colors cursor-pointer group">
+                            <td class="p-table-cell-padding font-data-tabular">23 Oct 2023</td>
+                            <td class="p-table-cell-padding">
+                                <p class="font-bold">Royal Automobiles Ltd.</p>
+                                <p class="text-body-sm text-on-surface-variant">Sales - Components Batch A-12</p>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="material-symbols-outlined text-secondary mr-1">call_received</span> Income
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span
+                                    class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-secondary-container/20 text-on-secondary-container uppercase">Reconciled</span>
+                            </td>
+                            <td class="p-table-cell-padding text-right font-data-tabular font-bold">₹ 4,80,000.00</td>
+                        </tr>
+                        <!-- Transaction Row 3 -->
+                        <tr class="hover:bg-primary/5 transition-colors cursor-pointer group">
+                            <td class="p-table-cell-padding font-data-tabular">22 Oct 2023</td>
+                            <td class="p-table-cell-padding">
+                                <p class="font-bold">Industrial Electricity Board</p>
+                                <p class="text-body-sm text-on-surface-variant">Utility Bill - September</p>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="material-symbols-outlined text-error mr-1">call_made</span> Expense
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span
+                                    class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-secondary-container/20 text-on-secondary-container uppercase">Paid</span>
+                            </td>
+                            <td class="p-table-cell-padding text-right font-data-tabular font-bold">₹ 42,350.00</td>
+                        </tr>
+                        <!-- Transaction Row 4 -->
+                        <tr class="hover:bg-primary/5 transition-colors cursor-pointer group">
+                            <td class="p-table-cell-padding font-data-tabular">20 Oct 2023</td>
+                            <td class="p-table-cell-padding">
+                                <p class="font-bold">Apex Tooling Solutions</p>
+                                <p class="text-body-sm text-on-surface-variant">Consulting Fees - Line Optimization</p>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="material-symbols-outlined text-error mr-1">call_made</span> Expense
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span
+                                    class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-error/10 text-error uppercase">Overdue</span>
+                            </td>
+                            <td class="p-table-cell-padding text-right font-data-tabular font-bold">₹ 12,000.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <!-- Contextual FAB (Suppressed on details but active on Dashboard as per requirement) -->
+    <button
+        class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform active:scale-95 group">
+        <span class="material-symbols-outlined text-[28px]">add</span>
+        <span
+            class="absolute right-full mr-4 bg-primary px-3 py-1 rounded text-body-sm font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Quick
+            Entry</span>
+    </button>
+</body>
+
+</html>

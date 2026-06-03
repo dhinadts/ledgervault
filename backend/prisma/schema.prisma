@@ -1,0 +1,74 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGO_URI")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+model User {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  firstName     String?
+  lastName      String?
+  photoUrl      String?
+  email         String   @unique
+  passwordHash  String
+  role          String
+  refreshTokens String[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model LedgerEntry {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  date        DateTime
+  particulars String
+  ledgerRef   String
+  debit       Float
+  credit      Float
+  status      String
+  tags        String[]
+  createdBy   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BankAccount {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  accountHolderName String
+  ownerType         String
+  bankName          String
+  branchName        String?
+  accountNumber     String
+  ifsc              String
+  accountType       String
+  openingBalance    Float
+  primaryAccount    Boolean  @default(false)
+  createdBy         String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model BalanceSheetItem {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  group     String
+  type      String
+  value     Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  detail    String
+  time      String
+  color     String
+  level     String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
