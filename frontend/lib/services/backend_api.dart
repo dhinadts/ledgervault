@@ -22,10 +22,9 @@ class BackendApi {
       return fromDefine;
     }
     if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-      return 'https://ledger-06q7.onrender.com';
+      return 'https://ledgervault-z5zo.onrender.com';
     }
-    return 'https://ledger-06q7.onrender.com';
-// return     'https://ledger-06q7.onrender.com';
+    return 'https://ledgervault-z5zo.onrender.com';
   }
 
   Future<AuthResult> register({

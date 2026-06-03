@@ -17,7 +17,7 @@ const allowedProductionOrigins = new Set([
   "https://dhinadts.github.io",
   "https://dhinadts.github.io/products",
   "https://dhinadts.github.io/products/",
-  "https://ledger-06q7.onrender.com",
+  "https://ledgervault-z5zo.onrender.com",
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:5173",
