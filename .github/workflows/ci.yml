@@ -40,3 +40,9 @@ jobs:
       - name: Build Flutter web
         working-directory: frontend
         run: flutter build web --release --base-href /ledgervault/ --dart-define=API_BASE_URL=https://ledgervault-z5zo.onrender.com
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: frontend/build/web
+          branch: gh-pages
